@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web',
-    'users'
+    'users',
+    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -75,9 +76,9 @@ WSGI_APPLICATION = 'steam.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "semestrovka_1",
+        "NAME": "semestrovka",
         "USER": "postgres",
-        "PASSWORD": "postgres",
+        "PASSWORD": "17456",
         "HOST": "localhost",
         "PORT": 5432
     }
