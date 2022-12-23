@@ -21,5 +21,7 @@ from . import views
 
 urlpatterns = [
     path('', views.GameListView.as_view(), name='home_page'),
-    path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game')
+    path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game'),
+    path('baske_add/<int:game_id>/', login_required(views.basket_add), name='basket_add'),
+    path('basket_delete/<int:id>', login_required(views.basket_delete), name='basket_delete'),
 ]
