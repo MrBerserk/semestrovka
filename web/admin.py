@@ -1,17 +1,9 @@
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
 from django.contrib import admin
 
 from .models import Favourite, Game, Basket, Comment
-
-
-@admin.register(Game)
-class GameAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'description', 'price', 'image',
-                    'user']
-    list_per_page = 6
-    fields = [('title', 'slug'), 'description', 'price', 'image',
-              'user']
-    search_fields = ['title']
-    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Favourite)
@@ -33,3 +25,26 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['game', 'user', 'text']
     list_per_page = 5
     ordering = ['user']
+
+
+class GameResource(resources.ModelResource):
+    class Meta:
+        model = Game
+        fields = ('title', 'slug', 'description', 'image', 'price')
+        export_order = ('title', 'slug', 'description', 'image', 'price')
+
+
+class GameAdmin(ImportExportModelAdmin):
+    resource_classes = [GameResource]
+    ordering = ['created_at']
+    list_select_related = ['user']
+    list_display = ['title', 'slug', 'description', 'price', 'image',
+                    'user']
+    readonly_fields = ['id']
+    fields = [('title', 'slug'), 'description', 'price', 'image',
+              'user']
+    list_filter = ['created_at']
+    resource_classes = [GameResource]
+
+
+admin.site.register(Game, GameAdmin)
