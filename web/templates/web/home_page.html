@@ -32,14 +32,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
+                    {% for game in games %}
                     <div class="single_product_item">
                         <div class="single_product_item_thumb">
-                            <img src="{% static 'img/tranding_item/tranding_item_1.png' %}" alt="#" class="img-fluid">
+                            <img src="/media/{{ game.image}}" alt="game-image" class="img-fluid">
                         </div>
-                        <h3><a href="single-product.html">Cervical pillow for airplane
-                            car office nap pillow</a></h3>
-                        <p>From $5</p>
+                        <h3><a href="single-product.html">{{ game.description }}</a></h3>
+                        <p>{{ game.price }} руб</p>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -54,27 +55,10 @@
                     <div class="client_review_slider owl-carousel">
                         <div class="single_client_review">
                             <div class="client_img">
-                                <img src="{% static 'img/client.png' %}" alt="#">
+                                <img src="{% static 'img/dima.JPG' %}" alt="#">
                             </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to
-                                help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
-                        </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="{% static 'img/client_1.png' %}" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to
-                                help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
-                        </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="{% static 'img/client_2.png' %}" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to
-                                help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
+                            <p>"Самый лучший программист на этой планете"</p>
+                            <h5>- Капрал Леви {Работаю}</h5>
                         </div>
                     </div>
                 </div>
@@ -89,16 +73,12 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6">
                     <div class="feature_part_tittle">
-                        <h3>Credibly innovate granular
-                            internal or organic sources
-                            whereas standards.</h3>
+                        <h3>Заслуживающие доверия инновации в гранулированных внутренних или органических источниках по сравнению со стандартами.</h3>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="feature_part_content">
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic”
-                            sources. Credibly innovate granular internal or “organic” sources whereas high standards in
-                            web-readiness.</p>
+                        <p>Мой сайт лучше стима в 100 раз, потому что я не беру с пользователей деньги.</p>
                     </div>
                 </div>
             </div>
@@ -106,25 +86,25 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="{% static 'img/icon/feature_icon_1.svg' %}" alt="#">
-                        <h4>Credit Card Support</h4>
+                        <h4>Без оплаты</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="{% static 'img/icon/feature_icon_2.svg' %}" alt="#">
-                        <h4>Online Order</h4>
+                        <h4>заказ</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="{% static 'img/icon/feature_icon_3.svg' %}" alt="#">
-                        <h4>Free Delivery</h4>
+                        <h4>Моментальная доставка</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="{% static 'img/icon/feature_icon_4.svg' %}" alt="#">
-                        <h4>Product with Gift</h4>
+                        <h4>Подарки при покупке игр</h4>
                     </div>
                 </div>
             </div>
