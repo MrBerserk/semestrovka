@@ -15,9 +15,11 @@ Including another URLconf
 """
 
 from django.urls import path
+from django.contrib.auth.decorators import login_required
+
 from . import views
 
 urlpatterns = [
     path('', views.GameListView.as_view(), name='home_page'),
-    path('add_game/', views.GameCreateView.as_view(), name='add_game')
+    path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game')
 ]
