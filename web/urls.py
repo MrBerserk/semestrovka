@@ -21,5 +21,11 @@ from . import views
 
 urlpatterns = [
     path('', views.GameListView.as_view(), name='home_page'),
-    path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game')
+    path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game'),
+    path('<slug:slug>/<int:id>', views.GameDetailView.as_view(), name='detail_game'),
+    path('<slug:slug>/<int:id>/delete', views.GameDeleteView.as_view(), name='update_game'),
+    path('<slug:slug>/<int:id>/edit', views.GameUpdateView.as_view(), name='delete_game'),
+    path('<slug:slug>/<int:game_id>/comment_delete/<int:id>/', views.CommentDeleteView.as_view(),
+         name='update_comment'),
+    path('<slug:slug>/<int:game_id>/comment_edit/<int:id>/', views.CommentUpdateView.as_view(), name='delete_comment'),
 ]

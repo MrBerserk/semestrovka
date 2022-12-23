@@ -2,21 +2,18 @@
 
 
 {% block content %}
-<section class="site-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mb-3"><h1>Добавление игры</h1></div>
+    <section class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-3"><h2>Добавление игры</h2></div>
 
-            <div class="col-md-6 mb-5">
                 <form action="" method="post" multiple="" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button class="btn btn-success">Добавить новую игру</button>
+                    <button class="btn btn-primary" style="margin-top: 35px">Добавить</button>
                 </form>
+
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
-

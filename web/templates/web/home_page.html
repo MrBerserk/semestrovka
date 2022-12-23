@@ -33,13 +33,15 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
                     {% for game in games %}
-                    <div class="single_product_item">
-                        <div class="single_product_item_thumb">
-                            <img src="/media/{{ game.image}}" alt="game-image" class="img-fluid">
+                        <div class="single_product_item">
+                            <div class="single_product_item_thumb">
+                                <a href="{% url 'detail_game' slug=game.slug id=game.id %}">
+                                    <img src="/media/{{ game.image }}" alt="game-image" class="img-fluid"></a>
+                            </div>
+                            <h3><a href="{% url 'detail_game' slug=game.slug id=game.id %}">{{ game.description }}</a>
+                            </h3>
+                            <p>{{ game.price }} руб</p>
                         </div>
-                        <h3><a href="single-product.html">{{ game.description }}</a></h3>
-                        <p>{{ game.price }} руб</p>
-                    </div>
                     {% endfor %}
                 </div>
             </div>
@@ -52,7 +54,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="client_review_slider owl-carousel">
+                    <div class="client_review_slider owl-carol">
                         <div class="single_client_review">
                             <div class="client_img">
                                 <img src="{% static 'img/dima.JPG' %}" alt="#">
@@ -73,7 +75,8 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6">
                     <div class="feature_part_tittle">
-                        <h3>Заслуживающие доверия инновации в гранулированных внутренних или органических источниках по сравнению со стандартами.</h3>
+                        <h3>Заслуживающие доверия инновации в гранулированных внутренних или органических источниках по
+                            сравнению со стандартами.</h3>
                     </div>
                 </div>
                 <div class="col-lg-5">
