@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('steam/', include('web.urls')),
-    path('users/', include('users.urls')),
+    path('', include('web.urls')),
+    path('', include('users.urls')),
 ]
 
 if settings.DEBUG:
