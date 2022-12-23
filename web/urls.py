@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.GameListView.as_view(), name='home_page'),
+    path('add_game/', views.GameCreateView.as_view(), name='add_game')
 ]
