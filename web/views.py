@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse
@@ -24,7 +25,7 @@ class GameCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.slug = slugify(form.instance.title, allow_unicode=True)
+        form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
 
     def get_success_url(self):
