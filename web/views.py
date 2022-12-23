@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse
@@ -39,8 +40,8 @@ class GameListView(ListView):
 
 
 class GameDetailView(FormMixin, DetailView):
-    template_name = 'web/'
-    form_class = GameForm
+    template_name = 'web/game_detail.html'
+    form_class = CommentForm
     model = Game
     slug_field = 'id'
     slug_url_kwarg = 'id'
@@ -55,7 +56,7 @@ class GameDetailView(FormMixin, DetailView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.post = self.get_object()
+        self.object.game = self.get_object()
         self.object.user = self.request.user
         self.object.save()
         return super().form_valid(form)
@@ -130,7 +131,7 @@ class CommentDeleteView(DeleteView):
     slug_url_kwarg = 'id'
 
     def get_success_url(self):
-        return reverse('detail_game', args=(self.object.slug, self.object.id))
+        return reverse('detail_game', args=(self.kwargs['slug'], self.kwargs['game_id']))
 
 
 def basket_add(request, game_id):
