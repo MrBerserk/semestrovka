@@ -1,9 +1,11 @@
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse
+from django.shortcuts import HttpResponseRedirect
 from django.views.generic.edit import FormMixin
+from django.contrib.auth.decorators import login_required
 
-from web.models import Game, Comment
+from web.models import Game, Comment, Basket
 from web.forms import GameForm, CommentForm
 
 
