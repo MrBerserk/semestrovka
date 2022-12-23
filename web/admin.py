@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Favourite, Game, Basket
+from .models import Favourite, Game, Basket, Comment
 
 
 @admin.register(Game)
@@ -26,3 +26,10 @@ class BasketAdminInLine(admin.TabularInline):
     fields = ['game', 'created_timestamp']
     readonly_fields = ['created_timestamp', 'game']
     extra = 0
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['game', 'user', 'text']
+    list_per_page = 5
+    ordering = ['user']
