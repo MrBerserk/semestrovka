@@ -1,0 +1,121 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h1>Тот же самый стим без оплаты</h1>
+                            <p>А ещё тут есть список желаемого</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner_img">
+            <img src="{% static 'img/steam.png' %}" alt="#" class="img-fluid">
+        </div>
+    </section>
+
+    <section class="trending_items">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>Список игр</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    {% for game in games %}
+                    <div class="single_product_item">
+                        <div class="single_product_item_thumb">
+                            <img src="/media/{{ game.image}}" alt="game-image" class="img-fluid">
+                        </div>
+                        <h3>{{ game.description }}</h3>
+                        <p>{{ game.price }} руб</p>
+                    </div>
+                    <div>
+                        <a href="{% url 'basket_add' game.id %}">
+                            <button>
+                                Добавить в корзину
+                            </button>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="client_review">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="client_review_slider owl-carousel">
+                        <div class="single_client_review">
+                            <div class="client_img">
+                                <img src="{% static 'img/dima.JPG' %}" alt="#">
+                            </div>
+                            <p>"Самый лучший программист на этой планете"</p>
+                            <h5>- Капрал Леви {Работаю}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="feature_part section_padding">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6">
+                    <div class="feature_part_tittle">
+                        <h3>Заслуживающие доверия инновации в гранулированных внутренних или органических источниках по сравнению со стандартами.</h3>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="feature_part_content">
+                        <p>Мой сайт лучше стима в 100 раз, потому что я не беру с пользователей деньги.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="{% static 'img/icon/feature_icon_1.svg' %}" alt="#">
+                        <h4>Без оплаты</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="{% static 'img/icon/feature_icon_2.svg' %}" alt="#">
+                        <h4>Топовый игры</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="{% static 'img/icon/feature_icon_3.svg' %}" alt="#">
+                        <h4>Моментальная доставка</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="{% static 'img/icon/feature_icon_4.svg' %}" alt="#">
+                        <h4>Подарки при покупке игр</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
