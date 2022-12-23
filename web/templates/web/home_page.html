@@ -40,6 +40,13 @@
                         <h3><a href="single-product.html">{{ game.description }}</a></h3>
                         <p>{{ game.price }} руб</p>
                     </div>
+                    <div>
+                        <a href="{% url 'basket_add' game.id %}">
+                            <button>
+                                Добавить в корзину
+                            </button>
+                        </a>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
@@ -92,7 +99,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="{% static 'img/icon/feature_icon_2.svg' %}" alt="#">
-                        <h4>заказ</h4>
+                        <h4>Топовый игры</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
