@@ -1,9 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse
-from django.shortcuts import HttpResponseRedirect
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.decorators import login_required
 
 from web.models import Game, Comment, Basket
 from web.forms import GameForm, CommentForm
@@ -15,6 +16,27 @@ class GameListView(ListView):
     context_object_name = 'games'
     slug_field = 'id'
     slug_url_kwarg = 'id'
+
+    def get_queryset(self):
+        queryset = Game.objects.all().order_by('created_at')
+        return self.filter_queryset(queryset)
+
+    def filter_queryset(self, games):
+        self.search = self.request.GET.get("search", None)
+
+        if self.search:
+            # Q - спец объект, у которого определены логические операции (и, или...)
+            games = games.filter(
+                Q(title__icontains=self.search) |
+                Q(description__icontains=self.search)
+            )
+        return games
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        return {
+            **super(GameListView, self).get_context_data(**kwargs),
+            'search': self.request.GET.get('search')
+        }
 
 
 class GameDetailView(FormMixin, DetailView):
@@ -110,6 +132,7 @@ class CommentDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('detail_game', args=(self.object.slug, self.object.id))
+
 
 @login_required
 def basket_add(request, game_id):
