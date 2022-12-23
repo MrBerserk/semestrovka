@@ -108,3 +108,24 @@ class CommentDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('detail_game', args=(self.object.slug, self.object.id))
+
+@login_required
+def basket_add(request, game_id):
+    current_page = request.META.get('HTTP_REFERER')
+    game = Game.objects.get(id=game_id)
+    baskets = Basket.objects.filter(user=request.user, game=game)
+
+    if not baskets.exists():
+        Basket.objects.create(user=request.user, game=game)
+        return HttpResponseRedirect(current_page)
+    else:
+        basket = baskets.first()
+        basket.save()
+        return HttpResponseRedirect(current_page)
+
+
+@login_required
+def basket_delete(request, id):
+    basket = Basket.objects.get(id=id)
+    basket.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
