@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
@@ -134,7 +133,6 @@ class CommentDeleteView(DeleteView):
         return reverse('detail_game', args=(self.object.slug, self.object.id))
 
 
-@login_required
 def basket_add(request, game_id):
     current_page = request.META.get('HTTP_REFERER')
     game = Game.objects.get(id=game_id)
@@ -149,7 +147,6 @@ def basket_add(request, game_id):
         return HttpResponseRedirect(current_page)
 
 
-@login_required
 def basket_delete(request, id):
     basket = Basket.objects.get(id=id)
     basket.delete()

@@ -28,7 +28,7 @@ urlpatterns = [
     path('<slug:slug>/<int:game_id>/comment_delete/<int:id>/', views.CommentDeleteView.as_view(),
          name='update_comment'),
     path('<slug:slug>/<int:game_id>/comment_edit/<int:id>/', views.CommentUpdateView.as_view(), name='delete_comment'),
-    path('basket_add/<int:game_id>/', login_required(views.basket_add), name='basket_add'),
-    path('basket_delete/<int:id>', login_required(views.basket_delete), name='basket_delete'),
+    path('basket_add/<int:game_id>/', views.basket_add, name='basket_add'),
+    path('basket_delete/<int:id>/', views.basket_delete, name='basket_delete'),
 ]
 
