@@ -11,12 +11,9 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between lh-condensed bg-light">
-                        <span class="text-muted">{{ basket.quantity }} шт.</span>
+                        <span class="text-muted">1 шт.</span>
                         <span class="text-muted">{{ basket.sum }} руб.</span>
                         <span class="text-muted">
-                    <a href="{% url 'basket_add' basket.product.id %}" style="text-decoration: none; color: gray;">
-                        <i class="fas fa-cart-plus"></i>
-                    </a>
                     <a href="{% url 'basket_delete' basket.id %}" style="text-decoration: none; color: gray;">
                         <i class="far fa-trash-alt"></i>
                     </a>

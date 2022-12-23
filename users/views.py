@@ -4,7 +4,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-
+from web.models import Basket
 
 def login(request):
     if request.method == 'POST':
@@ -47,8 +47,12 @@ def profile(request):
             return HttpResponseRedirect(reverse('profile'))
     else:
         form = UserProfileForm(instance=user)
+    baskets = Basket.objects.filter(user=user)
+    total_sum = sum(basket.sum() for basket in baskets)
     return render(request, 'users/profile.html', {
         'form': form,
+        'baskets': Basket.objects.filter(user=user),
+        'total_sum': total_sum,
     })
 
 
