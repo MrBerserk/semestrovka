@@ -3,7 +3,14 @@ from import_export.admin import ImportExportModelAdmin
 
 from django.contrib import admin
 
-from .models import Favourite, Game, Basket, Comment
+from .models import Favourite, Game, Basket, Comment, Category
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description']
+    list_per_page = 5
+    ordering = ['name']
 
 
 @admin.register(Favourite)
@@ -42,8 +49,10 @@ class GameAdmin(ImportExportModelAdmin):
                     'user']
     readonly_fields = ['id']
     fields = [('title', 'slug'), 'description', 'price', 'image',
-              'user']
+              'user', 'category']
     list_filter = ['created_at']
+    filter_horizontal = ['category']
+    prepopulated_fields = {'slug': ('title',)}
     resource_classes = [GameResource]
 
 

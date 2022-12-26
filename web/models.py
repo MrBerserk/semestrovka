@@ -12,6 +12,18 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class Category(BaseModel):
+    name = models.CharField(max_length=64, unique=True)
+    description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Категории Игр'
+        verbose_name = 'Категория Игры'
+
+    def __str__(self):
+        return self.name
+
+
 class Game(BaseModel):
     user = models.ForeignKey(User, verbose_name='пользователь', related_name='user_games', on_delete=models.CASCADE)
     title = models.CharField(max_length=80, verbose_name='название игры')
@@ -20,6 +32,7 @@ class Game(BaseModel):
     image = models.ImageField(null=True, blank=True, upload_to='games_images', verbose_name='скрин из игры')
     price = models.IntegerField(null=True, blank=True, verbose_name='цена',
                                 validators=[MinValueValidator(1), MaxValueValidator(5000)])
+    category = models.ManyToManyField(Category)
 
     class Meta:
         verbose_name_plural = 'Игры'
