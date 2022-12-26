@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'steam.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "semestrovka",
+        "NAME": "semestrovka_1",
         "USER": "postgres",
-        "PASSWORD": "17456",
+        "PASSWORD": "postgres",
         "HOST": "localhost",
         "PORT": 5432
     }

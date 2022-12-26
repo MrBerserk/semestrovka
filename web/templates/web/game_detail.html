@@ -1,0 +1,86 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="breadcrumb_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <h2>You are checking game - {{ game.title }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="blog_area single-post-area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="img/blog/single_blog_1.png" alt="">
+                        </div>
+                        <div class="blog_details">
+                            <h2>{{ game.title }}</h2>
+                            <p class="excert">
+                                {{ game.description }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+                        <ul class="blog-info-link mt-3 mb-4">
+                            <li><i class="far fa-comments"></i>
+                                {{ game.game_comments.all.count }} Comments
+                            </li>
+                        </ul>
+
+                        {% for comment in game.game_comments.all %}
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="{% if comment.user.image %}{{ comment.user.image.url }}
+                                                 {% else %}{% static 'vendor/img/users/default-user.png' %} {% endif %}"
+                                                 alt="user-img">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                {{ comment.user }} | {{ comment.created_at }}
+                                                {% if user.is_authenticated and user.id == comment.user_id %}
+                                                    <br>
+                                                    <a href="{% url 'update_comment' game.slug game.id comment.id %}">
+                                                        <button class="btn btn-primary btn-sm">Изменить</button>
+                                                    </a>
+
+                                                    <form method="POST"
+                                                          action="{% url 'delete_comment' game.slug game.id comment.id %}">
+                                                        {% csrf_token %}
+                                                        <button class="btn btn-danger btn-sm">Удалить</button>
+                                                    </form>
+                                                {% endif %}
+                                            <p>{{ comment.text }}</p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Leave a comment</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="btn btn-success">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

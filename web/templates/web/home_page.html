@@ -40,7 +40,7 @@
                                 </a>
                             </div>
                             <h1><a href="{% url 'detail_game' slug=game.slug id=game.id %}">{{ game.title }}</a></h1>
-                            <h3>{{ game.description }}</h3>
+                            <h3>{{ game.description|truncatewords:30 }}</h3>
                             <p>{{ game.price }} руб</p>
 
                             <a href="{% url 'basket_add' game.id %}">

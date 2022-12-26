@@ -23,12 +23,12 @@ urlpatterns = [
     path('', views.GameListView.as_view(), name='home_page'),
     path('add_game/', login_required(views.GameCreateView.as_view()), name='add_game'),
     path('<slug:slug>/<int:id>', views.GameDetailView.as_view(), name='detail_game'),
-    path('<slug:slug>/<int:id>/delete', views.GameDeleteView.as_view(), name='update_game'),
-    path('<slug:slug>/<int:id>/edit', views.GameUpdateView.as_view(), name='delete_game'),
-    path('<slug:slug>/<int:game_id>/comment_delete/<int:id>/', views.CommentDeleteView.as_view(),
+    path('<slug:slug>/<int:id>/delete', login_required(views.GameDeleteView.as_view()), name='update_game'),
+    path('<slug:slug>/<int:id>/edit', login_required(views.GameUpdateView.as_view()), name='delete_game'),
+    path('<slug:slug>/<int:game_id>/comment_delete/<int:id>/', login_required(views.CommentDeleteView.as_view()),
+         name='delete_comment'),
+    path('<slug:slug>/<int:game_id>/comment_edit/<int:id>/', login_required(views.CommentUpdateView.as_view()),
          name='update_comment'),
-    path('<slug:slug>/<int:game_id>/comment_edit/<int:id>/', views.CommentUpdateView.as_view(), name='delete_comment'),
     path('basket_add/<int:game_id>/', views.basket_add, name='basket_add'),
     path('basket_delete/<int:id>/', views.basket_delete, name='basket_delete'),
 ]
-

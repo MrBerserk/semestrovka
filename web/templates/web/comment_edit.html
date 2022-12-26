@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-3"><h1>Редактирование комента</h1></div>
-                <a href="{% url 'detail_game' slug=slug id=post_id %}">Назад</a>
+                <a href="{% url 'detail_game' slug=slug id=game_id %}">Назад</a>
 
                 {% if request.user == comment.user %}
                     <div class="col-md-6 mb-5">
